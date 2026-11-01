@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zerry | Roblox Developer Portfolio</title>
+    <!-- Font Montserrat & FontAwesome Icon -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0f1015;
+            --card-bg: #181a22;
+            --accent-red: #e52929;
+            --accent-hover: #ff3b3b;
+            --text-main: #ffffff;
+            --text-sub: #a0a5b5;
+            --border-color: #2a2d3d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* HEADER & AVATAR */
+        .profile-header {
+            background: linear-gradient(135deg, #1f222e 0%, #11131a 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 25px;
+        }
+
+        .avatar-box {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-red);
+            background-color: #222533;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(229, 41, 41, 0.4);
+        }
+
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-info h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .header-info h1 span {
+            color: var(--accent-red);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(229, 41, 41, 0.15);
+            color: var(--accent-red);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 5px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(229, 41, 41, 0.3);
+        }
+
+        .about-text {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        .tools-list {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        /* SECTION TILES */
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .section-title i {
+            color: var(--accent-red);
+        }
+
+        /* CARD GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-red);
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        /* SHOWCASE GALERI */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .showcase-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .showcase-item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .showcase-item-info {
+            padding: 12px;
+        }
+
+        .showcase-item-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .showcase-item-info p {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        /* PUBLISHED GAME */
+        .featured-game {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://via.placeholder.com/800x300/181a22/ffffff?text=World+Cultivation+Banner') center/cover;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--accent-red);
+            margin-top: 15px;
+        }
+
+        .featured-game h3 {
+            color: #fff;
+            font-size: 1.3rem;
+        }
+
+        .stats-badge {
+            background: var(--accent-red);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* RATES & PRICING */
+        .price-tag {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-red);
+            margin: 8px 0;
+        }
+
+        /* CONTACT & FOOTER */
+        .contact-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .contact-btn:hover {
+            border-color: var(--accent-red);
+            background: rgba(229, 41, 41, 0.1);
+        }
+
+        .contact-btn i {
+            font-size: 1.2rem;
+            color: var(--accent-red);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-sub);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .tools-list {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER / ABOUT ME -->
+        <header class="profile-header">
+            <div class="avatar-box">
+                <!-- Foto Avatar Roblox PelukCiumFirst (Otomatis terambil dari API Roblox) -->
+                <img src="https://www.roblox.com/headshot-thumbnail/image?userId=1&width=420&height=420&format=png" id="roblox-avatar" alt="Zerry Roblox Avatar">
+            </div>
+            <div class="header-info">
+                <h1>ROBLOX DEVELOPER | <span>ZERRY</span></h1>
+                <div class="badge"><i class="fa-solid fa-code"></i> 3+ Years Experience</div>
+                <p class="about-text">
+                    Hi! I am Zerry, a Roblox Developer specializing in building optimized gameplay systems, clean code architecture, and ensuring smooth mobile experiences. I love creating high-quality, visually stunning VFX!
+                </p>
+                <div class="tools-list">
+                    <strong>Tools & Tech:</strong> Luau (Roblox Scripting), GitHub, Roblox Studio, VS Code.
+                </div>
+            </div>
+        </header>
+
+        <!-- SHOWCASE & CONTRIBUTIONS -->
+        <div class="section-title">
+            <i class="fa-solid fa-gamepad"></i> Showcase & Development
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3><i class="fa-solid fa-mountain-sun"></i> Realistic Environment & Shaders</h3>
+                <p>Advanced lighting configuration and custom shaders to bring game worlds to life with high realism.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-hand-fist"></i> Combat Systems</h3>
+                <p>Responsive, high-performance combat mechanics tailored for smooth multiplayer action.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-wand-magic-sparkles"></i> VFX Aura & Particle Effects</h3>
+                <p>Custom-designed visual effects and stunning aura animations that enhance gameplay immersion.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-desktop"></i> GUI Systems</h3>
+                <p>Intuitive, clean, and fully functional user interfaces built for all device layouts.</p>
+            </div>
+        </div>
+
+        <!-- SHOWCASE GAMBAR / GIF (TEMPAT FOTO PROYEK) -->
+        <div class="section-title">
+            <i class="fa-solid fa-image"></i> Visual Showcase (VFX & Gameplay)
+        </div>
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <img src="https://via.placeholder.com/400x250/181a22/e52929?text=VFX+Aura+Demo.gif" alt="VFX Showcase">
+                <div class="showcase-item-info">
+                    <h4>VFX Aura System</h4>
+                    <p>Custom particles & lighting animations.</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <img src="https://via.placeholder.com/400x250/181a22/e52929?text=Combat+System.gif" alt="Combat Showcase">
+                <div class="showcase-item-info">
+                    <h4>Combat Mechanics</h4>
+                    <p>Smooth hitbox & frame optimization.</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <img src="https://via.placeholder.com/400x250/181a22/e52929?text=UI+Layout.png" alt="UI Showcase">
+                <div class="showcase-item-info">
+                    <h4>Responsive UI</h4>
+                    <p>Cross-device compatibility (PC & Mobile).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PUBLISHED GAMES -->
+        <div class="section-title">
+            <i class="fa-solid fa-rocket"></i> Published Games
+        </div>
+        <div class="featured-game">
+            <h3>World Cultivation <span class="stats-badge">4K+ Visits</span></h3>
+            <p style="color: #ccc; margin-top: 5px;">Solo Developer — Entirely coded, built, and designed independently.</p>
+        </div>
+
+        <!-- AVAILABILITY & RATES -->
+        <div class="section-title">
+            <i class="fa-solid fa-wallet"></i> Availability & Payment
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3><i class="fa-clock"></i> Availability</h3>
+                <p><strong>Mon – Thu:</strong> 2 - 4 hours / day</p>
+                <p><strong>Fri – Sun:</strong> 5 - 7 hours / day</p>
+            </div>
+            <div class="card">
+                <h3>Small Systems / Features</h3>
+                <div class="price-tag">200 Robux / $1.10 / Rp 20.000</div>
+                <p>For small scripts, simple tools, or minor feature additions.</p>
+            </div>
+            <div class="card">
+                <h3>Full Projects / Complex Systems</h3>
+                <div class="price-tag">10,000 Robux / $10.00 / Rp 180.000</div>
+                <p>For large-scale gameplay frameworks, full combat, or game mechanics.</p>
+            </div>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 10px;">
+            <em>*Note: Robux payments must cover the 30% Roblox marketplace tax if paying via Gamepass/Clothing.</em>
+        </p>
+
+        <!-- CONTACT -->
+        <div class="section-title">
+            <i class="fa-solid fa-envelope"></i> Contact Me
+        </div>
+        <div class="contact-container">
+            <a href="https://discord.com" target="_blank" class="contact-btn">
+                <i class="fa-brands fa-discord"></i> Discord: zerryanugraho
+            </a>
+            <a href="https://instagram.com/xu_qing21" target="_blank" class="contact-btn">
+                <i class="fa-brands fa-instagram"></i> @xu_qing21
+            </a>
+            <a href="https://www.roblox.com/search/users?keyword=PelukCiumFirst" target="_blank" class="contact-btn">
+                <i class="fa-solid fa-user"></i> Roblox: PelukCiumFirst
+            </a>
+        </div>
+
+        <footer>
+            <p>© 2026 Zerry | Roblox Developer Portfolio</p>
+        </footer>
+
+    </div>
+
+    <!-- Script Otomatis Mengambil Avatar Roblox 'PelukCiumFirst' -->
+    <script>
+        const username = "PelukCiumFirst";
+        
+        fetch(`https://users.roblox.com/v1/usernames/users`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ usernames: [username] })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.data && data.data.length > 0) {
+                const userId = data.data[0].id;
+                // Fetch Headshot Avatar
+                return fetch(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=420x420&format=Png&isCircular=false`);
+            }
+        })
+        .then(res => res.json())
+        .then(thumbData => {
+            if (thumbData && thumbData.data.length > 0) {
+                document.getElementById('roblox-avatar').src = thumbData.data[0].imageUrl;
+            }
+        })
+        .catch(err => console.log("Gagal memuat avatar Roblox otomatis, menggunakan default avatar."));
+    </script>
+</body>
+</html>
