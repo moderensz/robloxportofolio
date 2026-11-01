@@ -188,11 +188,16 @@
 
         /* PUBLISHED GAME */
         .featured-game {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://via.placeholder.com/800x300/181a22/ffffff?text=World+Cultivation+Banner') center/cover;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), #181a22;
             border-radius: 12px;
             padding: 25px;
             border: 1px solid var(--accent-red);
             margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .featured-game h3 {
@@ -207,6 +212,23 @@
             border-radius: 4px;
             font-size: 0.8rem;
             font-weight: 700;
+        }
+
+        .play-btn {
+            background: var(--accent-red);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .play-btn:hover {
+            background: var(--accent-hover);
         }
 
         /* RATES & PRICING */
@@ -273,14 +295,16 @@
         <!-- HEADER / ABOUT ME -->
         <header class="profile-header">
             <div class="avatar-box">
-                <!-- Foto Avatar Roblox PelukCiumFirst (Otomatis terambil dari API Roblox) -->
-                <img src="https://www.roblox.com/headshot-thumbnail/image?userId=1&width=420&height=420&format=png" id="roblox-avatar" alt="Zerry Roblox Avatar">
+                <!-- Foto Avatar Roblox ID: 3677526689 (PelukCiumFirst) -->
+                <img src="https://tr.rbxcdn.com/30day-avatar-headshot-3677526689-png/420/420/AvatarHeadshot/Png" 
+                     onerror="this.src='https://tr.rbxcdn.com/180DAY-e4c1cf6b3eeefcaedb5fa53f7c9e0c52/420/420/Avatar/Png/noFilter'" 
+                     alt="PelukCiumFirst Roblox Avatar">
             </div>
             <div class="header-info">
                 <h1>ROBLOX DEVELOPER | <span>ZERRY</span></h1>
                 <div class="badge"><i class="fa-solid fa-code"></i> 3+ Years Experience</div>
                 <p class="about-text">
-                    Hi! I am Zerry, a Roblox Developer specializing in building optimized gameplay systems, clean code architecture, and ensuring smooth mobile experiences. I love creating high-quality, visually stunning VFX!
+                    Hi! I am Zerry, a Roblox Developer with over 3 years of experience on the platform. I specialize in building optimized gameplay systems, maintaining clean code architecture, and ensuring games are fully optimized for a smooth mobile experience. I love creating high-quality, visually stunning VFX!
                 </p>
                 <div class="tools-list">
                     <strong>Tools & Tech:</strong> Luau (Roblox Scripting), GitHub, Roblox Studio, VS Code.
@@ -312,7 +336,7 @@
             </div>
         </div>
 
-        <!-- SHOWCASE GAMBAR / GIF (TEMPAT FOTO PROYEK) -->
+        <!-- SHOWCASE GAMBAR / GIF -->
         <div class="section-title">
             <i class="fa-solid fa-image"></i> Visual Showcase (VFX & Gameplay)
         </div>
@@ -345,8 +369,13 @@
             <i class="fa-solid fa-rocket"></i> Published Games
         </div>
         <div class="featured-game">
-            <h3>World Cultivation <span class="stats-badge">4K+ Visits</span></h3>
-            <p style="color: #ccc; margin-top: 5px;">Solo Developer — Entirely coded, built, and designed independently.</p>
+            <div>
+                <h3>World Cultivation (Solo Developer) <span class="stats-badge">4K+ Visits</span></h3>
+                <p style="color: #ccc; margin-top: 5px;">Entirely coded, built, and designed independently.</p>
+            </div>
+            <a href="https://www.roblox.com/games/109734119237912/World-Cultivation" target="_blank" class="play-btn">
+                <i class="fa-solid fa-play"></i> Play Game
+            </a>
         </div>
 
         <!-- AVAILABILITY & RATES -->
@@ -355,12 +384,12 @@
         </div>
         <div class="grid">
             <div class="card">
-                <h3><i class="fa-clock"></i> Availability</h3>
+                <h3><i class="fa-regular fa-clock"></i> Availability</h3>
                 <p><strong>Mon – Thu:</strong> 2 - 4 hours / day</p>
                 <p><strong>Fri – Sun:</strong> 5 - 7 hours / day</p>
             </div>
             <div class="card">
-                <h3>Small Systems / Features</h3>
+                <h3>Small Systems / Per-Feature Assets</h3>
                 <div class="price-tag">200 Robux / $1.10 / Rp 20.000</div>
                 <p>For small scripts, simple tools, or minor feature additions.</p>
             </div>
@@ -385,41 +414,16 @@
             <a href="https://instagram.com/xu_qing21" target="_blank" class="contact-btn">
                 <i class="fa-brands fa-instagram"></i> @xu_qing21
             </a>
-            <a href="https://www.roblox.com/search/users?keyword=PelukCiumFirst" target="_blank" class="contact-btn">
-                <i class="fa-solid fa-user"></i> Roblox: PelukCiumFirst
+            <a href="https://www.roblox.com/users/3677526689/profile" target="_blank" class="contact-btn">
+                <i class="fa-solid fa-user"></i> Roblox Profile
             </a>
         </div>
 
         <footer>
-            <p>© 2026 Zerry | Roblox Developer Portfolio</p>
+            <p>© Zerry | Roblox Developer Portfolio</p>
         </footer>
 
     </div>
 
-    <!-- Script Otomatis Mengambil Avatar Roblox 'PelukCiumFirst' -->
-    <script>
-        const username = "PelukCiumFirst";
-        
-        fetch(`https://users.roblox.com/v1/usernames/users`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ usernames: [username] })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.data && data.data.length > 0) {
-                const userId = data.data[0].id;
-                // Fetch Headshot Avatar
-                return fetch(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=420x420&format=Png&isCircular=false`);
-            }
-        })
-        .then(res => res.json())
-        .then(thumbData => {
-            if (thumbData && thumbData.data.length > 0) {
-                document.getElementById('roblox-avatar').src = thumbData.data[0].imageUrl;
-            }
-        })
-        .catch(err => console.log("Gagal memuat avatar Roblox otomatis, menggunakan default avatar."));
-    </script>
 </body>
 </html>
