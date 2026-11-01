@@ -10,15 +10,17 @@
     
     <style>
         :root {
-            --bg-body: #0b0c10;
-            --bg-card: #12141c;
-            --bg-card-hover: #191c28;
-            --accent-color: #ff3b3b;
-            --accent-glow: rgba(255, 59, 59, 0.25);
-            --text-primary: #f0f2f5;
-            --text-secondary: #9499ad;
-            --border-color: #1f2330;
-            --border-highlight: #2e3447;
+            --bg-body: #05050a;
+            --bg-card: rgba(18, 20, 32, 0.7);
+            --bg-card-hover: rgba(28, 32, 50, 0.85);
+            --gradient-primary: linear-gradient(135deg, #ff3b3b 0%, #9933ff 100%);
+            --gradient-galaxy: linear-gradient(135deg, #0d0e1a 0%, #1a0b2e 50%, #080914 100%);
+            --accent-purple: #a855f7;
+            --accent-red: #ff3b3b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(168, 85, 247, 0.4);
         }
 
         * {
@@ -33,6 +35,53 @@
             color: var(--text-primary);
             line-height: 1.6;
             padding: 40px 20px;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* GALAXY BACKGROUND & STARS EFFICIENT EFFECT */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(153, 51, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(255, 59, 59, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(30, 27, 75, 0.25) 0%, transparent 60%),
+                var(--gradient-galaxy);
+            z-index: -2;
+        }
+
+        /* STAR PARTICLES WITH CSS NOISE EFFECT */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 40px 70px, rgba(255,255,255,0.7), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #a855f7, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 160px 120px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 230px 190px, rgba(255, 59, 59, 0.8), rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 300px 60px, #ffffff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 350px 350px;
+            opacity: 0.4;
+            z-index: -1;
+            animation: starsTwinkle 8s infinite linear;
+        }
+
+        @keyframes starsTwinkle {
+            0% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 0.6; }
+            100% { opacity: 0.3; transform: translateY(-20px); }
         }
 
         .container {
@@ -42,11 +91,12 @@
 
         /* HERO HEADER SECTION */
         .hero {
-            background: linear-gradient(180deg, #161924 0%, var(--bg-card) 100%);
+            background: rgba(15, 17, 28, 0.65);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
             margin-bottom: 35px;
             position: relative;
             overflow: hidden;
@@ -58,8 +108,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-color), #ff7575);
+            height: 3px;
+            background: var(--gradient-primary);
         }
 
         .hero-title-container {
@@ -72,27 +122,30 @@
         }
 
         .hero h1 {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             color: #ffffff;
         }
 
-        .hero h1 span {
-            color: var(--accent-color);
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .experience-badge {
-            background: rgba(255, 59, 59, 0.1);
-            color: var(--accent-color);
-            padding: 6px 14px;
+            background: rgba(168, 85, 247, 0.12);
+            color: var(--accent-purple);
+            padding: 6px 16px;
             border-radius: 30px;
             font-size: 0.85rem;
             font-weight: 600;
-            border: 1px solid rgba(255, 59, 59, 0.3);
+            border: 1px solid rgba(168, 85, 247, 0.3);
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.15);
         }
 
         .hero-desc {
@@ -109,13 +162,19 @@
         }
 
         .tag {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
             padding: 6px 14px;
             border-radius: 8px;
             font-size: 0.85rem;
             font-weight: 500;
+            backdrop-filter: blur(5px);
+            transition: border-color 0.2s;
+        }
+
+        .tag:hover {
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         /* SECTION HEADINGS */
@@ -130,7 +189,9 @@
         }
 
         .section-header i {
-            color: var(--accent-color);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* GRID LAYOUTS */
@@ -149,30 +210,32 @@
         /* CARD STYLES */
         .card {
             background: var(--bg-card);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             border-radius: 14px;
             padding: 24px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .card:hover {
             background: var(--bg-card-hover);
             border-color: var(--border-highlight);
             transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
         }
 
         .card-icon {
             width: 44px;
             height: 44px;
-            background: rgba(255, 59, 59, 0.1);
+            background: rgba(168, 85, 247, 0.1);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent-color);
+            color: var(--accent-purple);
             font-size: 1.2rem;
             margin-bottom: 16px;
+            border: 1px solid rgba(168, 85, 247, 0.2);
         }
 
         .card h3 {
@@ -190,6 +253,7 @@
         /* PUBLISHED GAMES & PROJECTS */
         .game-card {
             background: var(--bg-card);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             border-radius: 14px;
             padding: 24px;
@@ -199,12 +263,13 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 20px;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
         }
 
         .game-card:hover {
             border-color: var(--border-highlight);
             background: var(--bg-card-hover);
+            box-shadow: 0 10px 30px rgba(255, 59, 59, 0.12);
         }
 
         .game-info h3 {
@@ -218,13 +283,14 @@
         }
 
         .visits-badge {
-            background: var(--accent-color);
+            background: var(--gradient-primary);
             color: #ffffff;
-            padding: 2px 10px;
+            padding: 3px 12px;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .game-info p {
@@ -233,34 +299,35 @@
             margin-top: 6px;
         }
 
-        /* BUTTONS */
+        /* GRADIENT BUTTONS */
         .btn-link {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
+            background: var(--gradient-primary);
+            color: #ffffff;
             text-decoration: none;
-            padding: 10px 18px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
             font-size: 0.9rem;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 59, 59, 0.25);
         }
 
         .btn-link:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            color: #ffffff;
-            box-shadow: 0 4px 15px var(--accent-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+            opacity: 0.95;
         }
 
         /* RATES & PRICING */
         .price-value {
             font-size: 1.25rem;
             font-weight: 700;
-            color: var(--accent-color);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin: 10px 0;
         }
 
@@ -280,6 +347,7 @@
 
         .contact-card {
             background: var(--bg-card);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             padding: 18px 20px;
             border-radius: 12px;
@@ -289,18 +357,19 @@
             align-items: center;
             gap: 14px;
             font-weight: 600;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .contact-card:hover {
-            border-color: var(--accent-color);
+            border-color: var(--accent-purple);
             transform: translateY(-2px);
             background: var(--bg-card-hover);
+            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.2);
         }
 
         .contact-card i {
             font-size: 1.3rem;
-            color: var(--accent-color);
+            color: var(--accent-purple);
         }
 
         .contact-detail span {
@@ -340,7 +409,7 @@
         <!-- HERO / ABOUT ME SECTION -->
         <section class="hero">
             <div class="hero-title-container">
-                <h1>ZERRY <span>/ ROBLOX DEVELOPER</span></h1>
+                <h1>ZERRY <span class="gradient-text">/ ROBLOX DEVELOPER</span></h1>
                 <div class="experience-badge">
                     <i class="fa-solid fa-code"></i> 3+ Years Experience
                 </div>
